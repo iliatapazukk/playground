@@ -1,24 +1,40 @@
-import logo from './logo.svg';
+import Header from "./components/Header";
+import Layout from "./components/Layout";
+import Footer from "./components/Footer";
+import backgroundFirst from "./assets/img/Bg1.jpg"
+import backgroundSecond from "./assets/img/Bg2.jpg"
 import './App.css';
+
+import './index.css'
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Hello world
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header
+        title="Some title"
+        description="some description first"
+      />
+      <Layout
+        urlBg={backgroundFirst}
+        title="Consectetur adipiscing"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore"
+      />
+
+      <Layout
+        colorBg = '#d3dfe7'
+        title="Consectetur adipiscing"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore"
+      />
+      <Layout
+        urlBg={backgroundSecond}
+        title="Consectetur adipiscing"
+        description="Lorem ipsum dolor sit amet, consectetur adipiscing elit,
+        sed do eiusmod tempor incididunt ut labore et dolore"
+      />
+      <Footer/>
+    </>
   );
 }
 
