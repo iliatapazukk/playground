@@ -1,13 +1,12 @@
 import style from './style.module.css';
-// import logo from '../../assets/img/logo.svg'
-console.log('!!!', style)
 
 const Layout = ({
                   title,
-                  description,
                   urlBg = false,
                   colorBg = false,
+                  children
                 }) => {
+
   const bgColor = colorBg ? { backgroundColor : `${colorBg}` } : {};
   const bgImage = urlBg ? { backgroundImage: `url(${urlBg})`} : {};
 
@@ -21,11 +20,11 @@ const Layout = ({
             )}
             <span className={style.separator}/>
           </div>
+          { children && (
           <div className={`${style.desc} ${style.full}`}>
-            {description && (
-              <p>{description}</p>
-            )}
-          </div>
+              {children}
+          </div> )
+          }
         </article>
       </div>
     </section>
