@@ -33,3 +33,23 @@ a:hover,
 a:active {
   color: #f300b4;
 }
+
+button, html [type=button] {
+  color: #fff;
+  background-color: #17a2b8;
+  margin: 1rem auto;
+  border: 1px solid #17a2b8;
+  padding: .375rem .75rem;
+  width: 100%;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: .25rem;
+  cursor: pointer;
+  transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+  -webkit-appearance: button;
+}
+
+button:hover, html [type=button]:hover{
+  background-color: #138496;
+  border-color: #117a8b;
+}

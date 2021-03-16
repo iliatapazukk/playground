@@ -1,7 +1,9 @@
 import style from './style.module.css';
 
-const Header = ({title, description}) => {
-
+const Header = ({title, description, onClickBtn}) => {
+  const handleClick = () => {
+    onClickBtn && onClickBtn('game')
+  }
   return (
     <header className={style.root}>
       <div className={style.forest}/>
@@ -12,6 +14,8 @@ const Header = ({title, description}) => {
         { description && (
           <p>{description}</p>
         )}
+
+        <button onClick={handleClick}>Start game</button>
       </div>
     </header>
   )
