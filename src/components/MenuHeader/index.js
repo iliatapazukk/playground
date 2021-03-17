@@ -3,9 +3,9 @@ import Menu from './Menu'
 import Navbar from './Navbar';
 
 const MenuHeader = () => {
-  const [navState, setNavState] = useState(false)
+  const [navState, setNavState] = useState(null)
   const handleClick = () => {
-    setNavState(!navState)
+    setNavState((prev) => !prev)
   }
 
   return(

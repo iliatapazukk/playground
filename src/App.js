@@ -15,7 +15,7 @@ function App() {
     case 'game' :
       return <GamePage routeTo={ handleChangePage } />
     default:
-      return <HomePage/>
+      return <HomePage onChangePage={ handleChangePage }/>
   }
 
 }
