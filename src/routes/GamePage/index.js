@@ -1,17 +1,42 @@
+import PokemonCard from '../../components/PokemonCard'
+import POKEMONS from '../../Pokemons.json'
+import { useState } from 'react'
 import style from './style.module.css'
 
-const GamePage = ({routeTo}) => {
+const GamePage = () => {
+
+  const [pokemons, setPocemons] = useState(POKEMONS)
+  const [isPocemonActive, setPocemonActive] = useState(false)
   const handleClick = () => {
-    routeTo && routeTo('app')
+    setPocemonActive(!isPocemonActive)
+    const newArr = POKEMONS.map(
+      (current) => {
+        const card = Object.assign({}, current)
+        //как-то передать id
+        card.active = true
+        return card
+      }
+    )
+    setPocemons(newArr)
+    console.log(newArr)
   }
   return (
     <div className={style.game}>
       <h1>GamePage</h1>
-      <button
-        onClick={handleClick}
-        className={style.button}>
-        Go to Home Page
-      </button>
+      <div className={style.pokemons}>
+        {pokemons.map(item =>
+          <PokemonCard
+            isActive={item.active}
+            pocClick={handleClick}
+            key={item.id}
+            id={item.id}
+            name={item.name}
+            type ={item.type}
+            img ={item.img}
+            values ={item.values}
+          />
+        )}
+      </div>
     </div>
   )
 }
