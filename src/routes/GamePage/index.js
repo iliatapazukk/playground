@@ -34,6 +34,9 @@ const GamePage = () => {
     const newKey = database.ref().child('pokemons').push().key
     const newPokemon = Object.entries(pokemons)[Math.floor(Math.random() * 5)][1]
     database.ref('pokemons/' + newKey).set(newPokemon)
+    database.ref('pokemons').once('value', (snapshot) => {
+      setPokemons(snapshot.val())
+    })
   }
 
   return (
