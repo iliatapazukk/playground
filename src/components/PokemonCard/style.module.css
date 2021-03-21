@@ -3,6 +3,8 @@
     height: 388px;
     margin: 16px;
     perspective: 1000px;
+    color: black;
+    font-size: 1rem;
 }
 
 .pokemonCard {
