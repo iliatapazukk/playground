@@ -2,12 +2,9 @@ import MenuHeader from '../../components/MenuHeader'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 import Footer from '../../components/Footer'
-import PokemonCard from '../../components/PokemonCard'
-import POKEMONS from '../../Pokemons'
 import backgroundFirst from '../../assets/img/Bg1.jpg'
 import backgroundSecond from '../../assets/img/Bg2.jpg'
 import inlineImg from '../../assets/img/logo.svg'
-import style from './style.module.css';
 
 function HomePage({onChangePage}) {
   const handleClickBtn = (page) => {
@@ -30,21 +27,7 @@ function HomePage({onChangePage}) {
       <Layout
         colorBg='#d3dfe7'
         title="Consectetur adipiscing"
-      >
-        <div className={style.flex}>
-          {POKEMONS.map(item =>
-            <PokemonCard
-              key={item.id}
-              id={item.id}
-              name={item.name}
-              type ={item.type}
-              img ={item.img}
-              values ={item.values}
-            />
-          )}
-        </div>
-
-      </Layout>
+      />
       <Layout
         urlBg={backgroundSecond}
         title="Consectetur adipiscing"

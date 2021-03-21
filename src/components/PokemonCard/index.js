@@ -2,10 +2,10 @@ import cn from 'classnames'
 import cardBack from '../../assets/img/card-back-side.jpeg'
 import style from './style.module.css'
 
-const PokemonCard = ({name, type, img, id, values, isActive}) => {
+const PokemonCard = ({name, type, img, values, isActive, pocClick}) => {
 
   return (
-    <div className={style.root}>
+    <div className={style.root} onClick={() => pocClick(values.id)}>
       <div className={ cn(style.pokemonCard, {[style.active]: isActive})}>
         <div className={style.cardFront}>
           <div className={`${style.wrap} ${style.front}`}>
@@ -20,7 +20,7 @@ const PokemonCard = ({name, type, img, id, values, isActive}) => {
                 <img src={img} alt={name} />
               </div>
               <div className={style.info}>
-                <span className={style.number}>#{id}</span>
+                <span className={style.number}>#{values.id}</span>
                 <h3 className={style.name}>{name}</h3>
                 <small className={style.type}>Type: <span>{type}</span></small>
               </div>
