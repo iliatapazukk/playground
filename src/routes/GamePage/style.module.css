@@ -3,14 +3,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  min-height: 100vh;
+  width: 100%;
   color: #fff;
   position: relative;
 }
+
 .game::before {
   content: '';
   position: fixed;
-  background: #181d23 url('../../assets/img/Stars.svg') fixed;
+  background: #fff;
   width: 100%;
   min-height: 100vh;
   z-index: -1;
@@ -20,11 +22,13 @@ h1 {
   font-size: 65px;
   font-weight: normal;
   font-style: italic;
-  color: #fafafa;
+  color: black;
   line-height: 65px;
 }
 
-.button {
-  width: auto;
-  min-width: 250px;
+.pokemons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  flex-direction: row;
 }

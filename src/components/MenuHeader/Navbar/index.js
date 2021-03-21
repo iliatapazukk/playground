@@ -3,12 +3,12 @@ import { ReactComponent as Logo } from '../../../assets/img/lorem-lorem-1.svg'
 import style from './style.module.css'
 
 
-const Navbar = ({hamburgerClick, isActive}) => {
+const Navbar = ({hamburgerClick, isActive, bgActive}) => {
   const handleHamburgerClick = () => {
     hamburgerClick && hamburgerClick()
   }
   return(
-    <nav className={style.root}>
+    <nav className={cn(style.root, {[style.bgActive]: bgActive})}>
       <div className={style.navWrapper}>
         <p className={style.brand}>
           <Logo /> Pokemon Game
