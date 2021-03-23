@@ -1,28 +1,64 @@
 import PokemonCard from '../../components/PokemonCard'
-import POKEMONS from '../../Pokemons.json'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import database from '../../service/firebase'
 import style from './style.module.css'
 
 const GamePage = () => {
 
-  const [pokemons, setPokemons] = useState(JSON.parse(JSON.stringify(POKEMONS)))
-  const handleClick = (id) => {
-    setPokemons(prevState => prevState.map(item => item.id === id ? { ...item, active: !item.active } : item))
+  const [pokemons, setPokemons] = useState({})
+
+  useEffect(() => {
+    database.ref('pokemons').once('value', (snapshot) => {
+      setPokemons(snapshot.val())
+    })
+  }, [])
+
+  const handleClick = (id, key) => {
+    setPokemons(prevState => {
+      return Object.entries(prevState).reduce((acc, item) => {
+        const pokemon = {...item[1]};
+        if (pokemon.id === id) {
+          pokemon.active = true;
+          console.log('!!! poc key', key)
+          database.ref('/pokemons/' + key).update({
+            active: true,
+          })
+        }
+        acc[item[0]] = pokemon;
+        return acc;
+      }, {});
+    });
   }
+
+  const addPokemone = () => {
+    const newKey = database.ref().child('pokemons').push().key
+    const newPokemon = Object.entries(pokemons)[Math.floor(Math.random() * 5)][1]
+    database.ref('pokemons/' + newKey).set(newPokemon)
+    database.ref('pokemons').once('value', (snapshot) => {
+      setPokemons(snapshot.val())
+    })
+  }
+
   return (
     <div className={style.game}>
       <h1>GamePage</h1>
+      <div>
+        <button onClick={addPokemone}>
+          Add Pokemone
+        </button>
+      </div>
       <div className={style.pokemons}>
-        {pokemons.map((item) =>
+        { Object.entries(pokemons).map(([key, {name, active, type, img, id, values}]) =>
           <PokemonCard
-            isActive={item.active}
-            pocClick={() => handleClick(item.id)}
-            key={item.id}
-            id={item.id}
-            name={item.name}
-            type ={item.type}
-            img ={item.img}
-            values ={item.values}
+            isActive={active}
+            key={key}
+            pocId={key}
+            pocClick={() => handleClick(id, key)}
+            id={id}
+            name={name}
+            type={type}
+            img ={img}
+            values ={values}
           />
         )}
       </div>
